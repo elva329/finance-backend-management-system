@@ -5,7 +5,7 @@ export interface ExpensesByCategory {
 }
 
 export interface Month {
-  id: string;
+  id?: string;
   month: string;
   revenue: number;
   expenses: number;

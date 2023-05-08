@@ -5,9 +5,15 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import kpiRoutes from './routes/kpi.js';
-import { kpis } from './data/data.js';
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import kpiRoutes from './routes/kpi.js';
+import productRoutes from './routes/product.js';
+import transactionRoutes from './routes/transaction.js';
+import KPI from './models/KPI.js';
+import Product from './models/Product.js';
+import Transaction from './models/Transaction.js';
+import { kpis, products, transactions } from './data/data.js';
+
 // /* CONFIGURATIONS */
 dotenv.config();
 const app = express();
@@ -19,8 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-// /* ROUTES */
+/* ROUTES */
 app.use('/kpi', kpiRoutes);
+app.use('/product', productRoutes);
+app.use('/transaction', transactionRoutes);
 
 const uri =
   'mongodb+srv://elva329:1234@cluster0.4dy91if.mongodb.net/?retryWrites=true&w=majority';
@@ -44,7 +52,8 @@ async function run() {
       'Pinged your deployment. You successfully connected to MongoDB!'
     );
     // await client.db('test').dropDatabase();
-    // await client.db('test').collection('kpis').insertMany(kpis);
+    // await client.db('test').collection('products').insertMany(products);
+    // await client.db('test').collection('transactions').insertMany(transactions);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
