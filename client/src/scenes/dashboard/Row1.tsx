@@ -1,6 +1,6 @@
 // import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
-// import { useGetKpisQuery } from "@/state/api";
+import { useGetKpisQuery } from "@/state/api";
 import { useTheme } from "@mui/material";
 import { useMemo } from "react";
 import {
@@ -18,11 +18,10 @@ import {
   Area,
 } from "recharts";
 
-import { kpis as data } from '../../data/data';
 const Row1 = () => {
   const { palette } = useTheme();
-  // const { data } = useGetKpisQuery();
-  console.log('data', data)
+  const { data } = useGetKpisQuery();
+
   const revenue = useMemo(() => {
     return (
       data &&

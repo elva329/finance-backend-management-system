@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 // import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
-// import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
+import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
 import { Box, Typography, useTheme } from "@mui/material";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import {
   Tooltip,
   CartesianGrid,
@@ -20,8 +19,6 @@ import {
   Scatter,
   ZAxis,
 } from "recharts";
-import { kpis as operationalData } from '../../data/data';
-import { products as productData } from '../../data/data'
 
 const pieData = [
   { name: "Group A", value: 600 },
@@ -31,9 +28,8 @@ const pieData = [
 const Row2 = () => {
   const { palette } = useTheme();
   const pieColors = [palette.primary[800], palette.primary[300]];
-  // const { data: operationalData } = useGetKpisQuery();
-  // const { data: productData } = useGetProductsQuery();
-
+  const { data: operationalData } = useGetKpisQuery();
+  const { data: productData } = useGetProductsQuery();
 
   const operationalExpenses = useMemo(() => {
     return (
